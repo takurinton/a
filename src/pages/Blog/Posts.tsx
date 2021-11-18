@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/layout';
 import { chakra } from '@chakra-ui/system';
 import { useEffect, useState } from 'preact/hooks';
+import { Link } from 'preact-router';
 import { fetcher } from "../../utils/fetcher";
 
 const initialState = [
@@ -31,7 +32,7 @@ export const Posts = () => {
       {
         posts.map(post => (
           <Box p='30px' textAlign='center'>
-            <chakra.h1 fontSize='2rem'>{post.title}</chakra.h1>
+            <chakra.h1 fontSize='2rem'><Link href={`/blog/${post.id}`}>{post.title}</Link></chakra.h1>
             <chakra.p>{post.category}</chakra.p>
             <chakra.p>{post.pub_date}</chakra.p>
           </Box>
