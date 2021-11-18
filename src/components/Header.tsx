@@ -8,11 +8,9 @@ import {
   Button,
   useDisclosure
 } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
 
-const Header = () => {
+const Header = ({ isAdmin }: { isAdmin: boolean }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleToggle = () => (isOpen ? onClose() : onOpen());
 
   return (
     <Flex
@@ -26,13 +24,9 @@ const Header = () => {
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
-          <Link href='/'>admin.takurinton.dev</Link>
+          { isAdmin ? <Link href='/'>admin.takurinton.dev</Link> : <>admin.takurinton.com</> }
         </Heading>
       </Flex>
-
-      <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
-        <HamburgerIcon />
-      </Box>
 
       <Stack
         direction={{ base: 'column', md: 'row' }}
@@ -42,21 +36,31 @@ const Header = () => {
         flexGrow={1}
         mt={{ base: 4, md: 0 }}
       >
-        <Text><Link href='/blog'>BLOG</Link></Text>
-        <Text><Link href='/portfolio'>PORTFOLIO</Link></Text>
+        {
+        isAdmin ? (
+            <>
+              <Text><Link href='/blog'>BLOG</Link></Text>
+              <Text><Link href='/portfolio'>PORTFOLIO</Link></Text>
+            </>
+          ) : <></>
+        }
       </Stack>
 
-      <Box
-        display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
-        mt={{ base: 4, md: 0 }}
-      >
-        <Button
-          variant='outline'
-          _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
-        >
-          <Link href='/login'>Login</Link>
-        </Button>
-      </Box>
+      {
+        isAdmin ? <></> : (
+          <Box
+            display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
+            mt={{ base: 4, md: 0 }}
+          >
+            <Button
+              variant='outline'
+              _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+            >
+              <Link href='/login'>Login</Link>
+            </Button>
+          </Box>
+        )
+      }
     </Flex>
   );
 };
