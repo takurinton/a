@@ -7,11 +7,13 @@ import { getToken } from './utils/getToken';
 
 export function App() {
   const isAdmin = getToken() ? true: false;
+  if (!isAdmin) history.pushState('', '', '/login');
   return (
     <ChakraProvider>
       <Header isAdmin={isAdmin}/>
       <Router>
         <Route path='/' component={Home} />
+        <Route path='/about' component={Home} />
         <Route path='/login' component={() => <Login isAdmin={isAdmin} />}/>
       </Router>
     </ChakraProvider>

@@ -18,7 +18,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-export const Login = (isAdmin: boolean) => {
+export const Login = ({ isAdmin }: { isAdmin: boolean }) => {
   if (isAdmin) history.pushState('', '', '/');
 
   const [state, setState] = useState({
@@ -43,13 +43,17 @@ export const Login = (isAdmin: boolean) => {
           console.log('unauthlization account...');
         return "not auth";
       }
+      console.log('login succes!!!');
       return res.json();
     })
     .then(res => {
       if (res === "not auth") return res;
       localStorage.setItem('token', res.token);
+      history.pushState('', '', '/');
+      window.location.reload();
     });
   };
+
 
   return (
     <Flex
