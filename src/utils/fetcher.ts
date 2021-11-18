@@ -4,19 +4,20 @@ import { noAuth } from "./noAuth";
 export const fetcher = async (
   { 
     url, 
-    body, 
+    _body, 
     method
 }: { 
     url: string; 
-    body: any, 
+    _body?: any, 
     method: string 
 }) => {
   const token = getToken();
   if (!token) return {};
 
+  const body = _body ?? JSON.stringify(_body);
   return await fetch(url, {
     method,
-    body: JSON.stringify(body),
+    body,
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`, 
