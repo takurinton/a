@@ -2,6 +2,7 @@ import Router, { Route } from 'preact-router';
 import { ChakraProvider } from "@chakra-ui/react"
 import Home from './pages/Home';
 import Login from "./pages/Login";
+import { Posts, Post } from './pages/Blog';
 import Header from './components/Header';
 import { getToken } from './utils/getToken';
 
@@ -13,6 +14,8 @@ export function App() {
       <Header isAdmin={isAdmin}/>
       <Router>
         <Route path='/' component={Home} />
+        <Route path='/blog' component={Posts} />
+        <Route path='/blog/:id' component={Post} />
         <Route path='/about' component={Home} />
         <Route path='/login' component={() => <Login isAdmin={isAdmin} />}/>
       </Router>
