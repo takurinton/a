@@ -3,6 +3,7 @@ import {
   Input,
   Textarea,
 } from '@chakra-ui/react';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
 export const Form = ({
   id,
@@ -24,11 +25,12 @@ export const Form = ({
   return (
     <form>
       <FormControl id="title" isRequired h='100px'>
-        <Input placeholder="タイトルを入力" fontSize='2rem' border='none' />
+        <Input name='title' placeholder="タイトルを入力" fontSize='2rem' border='none' onChange={onChange}/>
         <hr />
       </FormControl>
       
       <Textarea
+        name='contents'
         value={value}
         onChange={onChange}
         placeholder="記事を書く"
