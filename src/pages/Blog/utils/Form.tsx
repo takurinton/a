@@ -4,7 +4,6 @@ import {
   Textarea,
   Select,
 } from '@chakra-ui/react';
-import { useEffect, useRef, useState } from 'preact/hooks';
 
 export const Form = ({
   id,
