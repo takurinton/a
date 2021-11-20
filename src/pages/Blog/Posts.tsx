@@ -7,6 +7,7 @@ import {
   Td,
   Box,
   Badge,
+  Spinner,
 } from "@chakra-ui/react"
 import { useEffect, useState } from 'preact/hooks';
 import { Link } from 'preact-router';
@@ -25,6 +26,7 @@ const initialState = [
 
 export const Posts = () => {
   const [posts, setPosts] = useState(initialState);
+  const [isLoading, setIsLoading] = useState(true);
   const url = `${import.meta.env.VITE_API_URL}/admin/blog`;
   useEffect(() => {
     (async () => {
@@ -33,35 +35,48 @@ export const Posts = () => {
         method: 'GET',
       });
       setPosts(p);
+      setIsLoading(false);
     })();
   }, []);
 
   return (
-    <Box w='80vw' m='30px auto'>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>id</Th>
-            <Th>title</Th>
-            <Th>is_open</Th>
-            <Th>created_at</Th>
-            <Th>action</Th>
-          </Tr>
-        </Thead>
-          {
-            posts.map((p, index) => (
-              <Tbody key={index.toString()}>
-                <Tr>
-                  <Td>{p.id}</Td>
-                  <Td>{p.title}</Td>
-                  <Td>{p.is_open ? <Badge colorScheme="green" variant="solid" fontSize="0.8em">公開中</Badge> : <Badge colorScheme="red" fontSize="0.8em">非公開</Badge>}</Td>
-                  <Td>{p.pub_date}</Td>
-                  <Td><Link href={`/blog/${p.id}`}><Badge fontSize="0.8em">編集</Badge></Link></Td>
-                </Tr>
-              </Tbody>
-            ))
-          }
-      </Table>
-    </Box>
+    isLoading 
+    ? (
+      <Box textAlign='center' p='100px 0'>
+        <Spinner />
+      </Box>
+    ) : (
+      <Box w='80vw' m='30px auto'>
+        <Box textAlign='right' p='0 0 20px'>
+          <Link href='/blog/new'>
+            <Badge colorScheme="green" variant="solid" fontSize="1.2em">新しい投稿を作成</Badge>
+          </Link>
+        </Box>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>id</Th>
+              <Th>title</Th>
+              <Th>is_open</Th>
+              <Th>created_at</Th>
+              <Th>action</Th>
+            </Tr>
+          </Thead>
+            {
+              posts.map((p, index) => (
+                <Tbody key={index.toString()}>
+                  <Tr>
+                    <Td>{p.id}</Td>
+                    <Td>{p.title}</Td>
+                    <Td>{p.is_open ? <Badge colorScheme="green" variant="solid" fontSize="0.8em">公開中</Badge> : <Badge colorScheme="red" fontSize="0.8em">非公開</Badge>}</Td>
+                    <Td>{p.pub_date}</Td>
+                    <Td><Link href={`/blog/${p.id}`}><Badge fontSize="0.8em">編集</Badge></Link></Td>
+                  </Tr>
+                </Tbody>
+              ))
+            }
+        </Table>
+      </Box>
+    )
   );
 }
