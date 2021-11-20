@@ -3,7 +3,6 @@ import { useState, useEffect } from 'preact/hooks';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
-import { useForm } from './hooks/useForm';
 
 const initialState = {
   category: '',
@@ -15,13 +14,8 @@ const initialState = {
 }
 
 export const Post = ({ id }: { id: number }) => {
-  const {
-    state, 
-    handleChange
-  } = useForm();
-
   const [post, setPost] = useState(initialState);
-  const [value, setValue] = useState('');
+  const [state, setState] = useState(initialState);
   const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
   useEffect(() => {
     (async () => {
@@ -30,12 +24,12 @@ export const Post = ({ id }: { id: number }) => {
         method: 'GET',
       });
       setPost(p);
-      setValue(p.contents);
+      setState(p);
     })();
   }, []);
 
   const onChange = (event) => {
-    handleChange(event);
+    setState({ ...state, [event.target.name]: event.target.value});
   };
 
   return (
@@ -44,7 +38,7 @@ export const Post = ({ id }: { id: number }) => {
         <Form value={state.contents} onChange={onChange} />
       </Box>
       <Box w='50%' p='20px'>
-        <Md text={value} />
+        <Md title={state.title} text={state.contents} />
       </Box>
     </Flex>
   )

@@ -11,7 +11,6 @@ export const useForm = () => {
   })
 
   const handleChange = (event) => {
-    console.log({ ...state, [event.target.name]: event.target.value})
     setState({ ...state, [event.target.name]: event.target.value});
   };
 
