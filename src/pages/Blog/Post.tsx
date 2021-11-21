@@ -28,11 +28,13 @@ export const Post = ({ id }: { id: number }) => {
     })();
   }, []);
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value});
   };
 
   return (
+    <>
+    {/* @ts-ignore */}
     <Flex p='30px'>
       <Box w='50%' p='20px'>
         <Form value={state.contents} onChange={onChange} />
@@ -41,5 +43,6 @@ export const Post = ({ id }: { id: number }) => {
         <Md title={state.title} text={state.contents} />
       </Box>
     </Flex>
+    </>
   )
 }

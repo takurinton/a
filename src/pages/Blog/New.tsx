@@ -1,4 +1,5 @@
 import { Flex, Box } from '@chakra-ui/layout';
+import React from 'react';
 import { useForm } from './hooks/useForm';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
@@ -16,9 +17,9 @@ export const New = () => {
   const {
     state, 
     handleChange
-  } = useForm(initialState);
+  } = useForm();
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(event);
   };
 

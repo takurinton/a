@@ -13,6 +13,7 @@ export function App() {
   return (
     <ChakraProvider>
       <Header isAdmin={isAdmin}/>
+      {/* @ts-ignore */}
       <Router>
         <Route path='/' component={Home} />
         <Route path='/blog' component={Posts} />

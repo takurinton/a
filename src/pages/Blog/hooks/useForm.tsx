@@ -1,16 +1,18 @@
 import { useState } from "preact/hooks"
 
-export const useForm = (initialState) => {
-  const [state, setState] = useState(initialState);
+export const useForm = () => {
+  const [state, setState] = useState({
+    category: '',
+    contents: '',
+    id: 0,
+    is_open: null,
+    pub_date: '',
+    title: '',
+  })
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value});
   };
-
-  const handleSubmit = (event) => {
-    event.preeventDefault();
-    // newPost(event);
-  }
 
   return {
     state,
