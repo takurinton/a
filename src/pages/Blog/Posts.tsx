@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -9,7 +10,6 @@ import {
   Badge,
   Spinner,
 } from "@chakra-ui/react"
-import { useEffect, useState } from 'preact/hooks';
 import { Link } from 'preact-router';
 import { fetcher } from "../../utils/fetcher";
 

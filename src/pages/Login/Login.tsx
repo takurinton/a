@@ -29,7 +29,7 @@ export const Login = ({ isAdmin }: { isAdmin: boolean }) => {
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
-  const handleChange = (event: React.TargetedEvent<HTMLInputElement>) => {
+  const handleChange = (event: any) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 

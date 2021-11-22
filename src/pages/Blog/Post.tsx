@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
-import { useState, useEffect } from 'preact/hooks';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
