@@ -1,3 +1,4 @@
+import React from 'react';
 import { chakra } from "@chakra-ui/system";
 import ReactMarkdown from "react-markdown";
 

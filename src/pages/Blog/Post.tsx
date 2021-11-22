@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
 import { fetcher } from '../../utils/fetcher';
@@ -34,7 +35,6 @@ export const Post = ({ id }: { id: number }) => {
 
   return (
     <>
-    {/* @ts-ignore */}
     <Flex p='30px'>
       <Box w='50%' p='20px'>
         <Form value={state.contents} onChange={onChange} />
