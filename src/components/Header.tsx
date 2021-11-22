@@ -1,4 +1,4 @@
-import { Link } from 'preact-router';
+import { Link } from 'react-router-dom';
 import {
   Box,
   Stack,
@@ -24,7 +24,7 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
-          { isAdmin ? <Link href='/'>admin.takurinton.dev</Link> : <>admin.takurinton.com</> }
+          { isAdmin ? <Link to='/'>admin.takurinton.dev</Link> : <>admin.takurinton.com</> }
         </Heading>
       </Flex>
 
@@ -39,8 +39,8 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
         {
         isAdmin ? (
             <>
-              <Text><Link href='/blog'>BLOG</Link></Text>
-              <Text><Link href='/portfolio'>PORTFOLIO</Link></Text>
+              <Text><Link to='/blog'>BLOG</Link></Text>
+              <Text><Link to='/portfolio'>PORTFOLIO</Link></Text>
             </>
           ) : <></>
         }
@@ -56,7 +56,7 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
             >
-              <Link href='/login'>Login</Link>
+              <Link to='/login'>Login</Link>
             </Button>
           </Box>
         )

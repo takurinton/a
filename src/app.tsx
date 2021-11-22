@@ -1,4 +1,8 @@
-import Router, { Route } from 'preact-router';
+import { 
+  BrowserRouter as Router,
+  Routes, 
+  Route 
+} from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react"
 import Home from './pages/Home';
 import Login from "./pages/Login";
@@ -13,13 +17,24 @@ export function App() {
   return (
     <ChakraProvider>
       <Header isAdmin={isAdmin}/>
-      {/* @ts-ignore */}
       <Router>
-        <Route path='/' component={Home} />
-        <Route path='/blog' component={Posts} />
-        <Route path='/blog/:id' component={Post} />
-        <Route path='/blog/new' component={New} />
-        <Route path='/login' component={() => <Login isAdmin={isAdmin} />}/>
+        <Routes>
+          <Route path='/'>
+            <Home />
+          </Route>
+          <Route path='/blog'>
+            <Posts />
+          </Route>
+          <Route path='/blog/:id'>
+            <Post id={1} />
+          </Route>
+          <Route path='/blog/new'>
+            <New />
+          </Route>
+          <Route path='/login'>
+            <Login isAdmin={isAdmin} />
+          </Route>
+        </Routes>
       </Router>
     </ChakraProvider>
   );
