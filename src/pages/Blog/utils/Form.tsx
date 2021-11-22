@@ -7,19 +7,9 @@ import {
 } from '@chakra-ui/react';
 
 export const Form = ({
-  id,
-  title,
-  is_open,
-  contents,
-  pub_date,
   value,
   onChange,
 }: {
-  id?: number;
-  title?: string;
-  is_open?: boolean;
-  contents?: string;
-  pub_date?: string;
   value: string;
   onChange: (event: any) => void;
 }) => {
