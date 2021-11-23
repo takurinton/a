@@ -28,6 +28,7 @@ export const Posts = () => {
     <PostsRenderer 
       isLoading={isLoading}
       posts={posts}
+      isStandalone={true}
     />
   );
 }

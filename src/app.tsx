@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import { Posts, Post } from './pages/Blog';
 import { New } from './pages/Blog/New';
 import { Posts as StandalonePosts } from './pages/Standalone/Blog/Posts';
+import { Post as StandalonePost } from './pages/Standalone/Blog/Post';
 import Header from './components/Header';
 import { getToken } from './utils/getToken';
 
@@ -36,7 +37,7 @@ const StandaloneRoute = () => {
       <Routes>
         <Route path='/standalone' element={<Home />} />
         <Route path='/standalone/blog' element={<StandalonePosts />} />
-        <Route path='/standalone/blog/:id' element={<Post />} />
+        <Route path='/standalone/blog/:id' element={<StandalonePost />} />
         <Route path='/standalone/blog/new' element={<New />} />
       </Routes>
     </BrowserRouter>
