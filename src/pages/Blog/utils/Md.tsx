@@ -15,8 +15,8 @@ export const Md = ({ value }: { value: any }) => {
           h3: ({node, ...props}) => <h3 style={{color: 'pink'}} {...props} />,
           a: ({node, ...props}) => <chakra.a href={props.href} style={{color: '#ff69b4'}} fontSize='1.2rem' fontWeight='500' {...props} />,
           p: ({node, ...props}) => <chakra.p lineHeight='150%' p='10px 0 10px' fontSize='1.2rem' fontWeight='500' {...props} />,
-          ul: ({node, ...props}) => <chakra.ul fontSize='1.2rem' {...props} />,
-          li: ({node, ...props}) => <chakra.li fontSize='1.2rem' m='10px 0' {...props} />,
+          ul: ({node, ...props}) => <chakra.ul fontSize='1.2rem' p='0 10px' m='10px 0' {...props} />,
+          li: ({node, ...props}) => <chakra.li fontSize='1.2rem' p='0 10px' {...props} />,
           em: ({node, ...props}) => <i style={{color: 'red'}} {...props} />,
           code({node, inline, className, children, ...props}) {
             const match = /language-(\w+)/.exec(className || '')
