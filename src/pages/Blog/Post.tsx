@@ -16,7 +16,6 @@ const initialState = {
 
 export const Post = () => {
   const { id } = useParams<string>();
-  const [post, setPost] = useState(initialState);
   const [state, setState] = useState(initialState);
   const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
   useEffect(() => {
@@ -25,7 +24,6 @@ export const Post = () => {
         url,
         method: 'GET',
       });
-      setPost(p);
       setState(p);
     })();
   }, []);

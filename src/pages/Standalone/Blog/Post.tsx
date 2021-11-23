@@ -14,13 +14,10 @@ const initialState = {
 
 export const Post = () => {
   const { id } = useParams<string>();
-  const [post, setPost] = useState(initialState);
   const [state, setState] = useState(initialState);
-  const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
   useEffect(() => {
     (async () => {
       const post = json.filter(p => p.id === Number(id))[0] as any;
-      setPost(post);
       setState(post);
     })();
 
