@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Flex, Box } from '@chakra-ui/layout';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
@@ -14,7 +14,8 @@ const initialState = {
   title: '',
 }
 
-export const Post = ({ id }: { id: number }) => {
+export const Post = () => {
+  const { id } = useParams<string>();
   const [post, setPost] = useState(initialState);
   const [state, setState] = useState(initialState);
   const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;

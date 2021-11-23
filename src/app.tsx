@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes, 
   Route 
 } from 'react-router-dom';
@@ -17,26 +17,16 @@ export function App() {
   if (!isAdmin) history.pushState('', '', '/login');
   return (
     <ChakraProvider>
-      <Header isAdmin={isAdmin}/>
-      <Router>
+      <BrowserRouter>
+        <Header isAdmin={isAdmin}/>
         <Routes>
-          <Route path='/'>
-            <Home />
-          </Route>
-          <Route path='/blog'>
-            <Posts />
-          </Route>
-          <Route path='/blog/:id'>
-            <Post id={1} />
-          </Route>
-          <Route path='/blog/new'>
-            <New />
-          </Route>
-          <Route path='/login'>
-            <Login isAdmin={isAdmin} />
-          </Route>
+          <Route path='/' element={<Home />} />
+          <Route path='/blog' element={<Posts />} />
+          <Route path='/blog/:id' element={<Post />} />
+          <Route path='/blog/new' element={<New />} />
+          <Route path='/login' element={<Login isAdmin={isAdmin} />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </ChakraProvider>
   );
 };
