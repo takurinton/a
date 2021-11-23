@@ -16,7 +16,6 @@ const initialState = {
 
 export const Post = () => {
   const { id } = useParams<string>();
-  const [post, setPost] = useState(initialState);
   const [state, setState] = useState(initialState);
   const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
   useEffect(() => {
@@ -25,7 +24,6 @@ export const Post = () => {
         url,
         method: 'GET',
       });
-      setPost(p);
       setState(p);
     })();
   }, []);
@@ -35,15 +33,21 @@ export const Post = () => {
   };
 
   return (
+    <PostRenderer state={state} onChange={onChange} />
+  )
+}
+
+export const PostRenderer = ({ state, onChange }: { state: any; onChange: (value: any) => void; }) => {
+  return (
     <>
-    <Flex p='30px'>
-      <Box w='50%' p='20px'>
-        <Form value={state} onChange={onChange} />
-      </Box>
-      <Box w='50%' p='20px'>
-        <Md value={state} />
-      </Box>
-    </Flex>
+      <Flex p='30px'>
+        <Box w='50%' p='20px'>
+          <Form value={state} onChange={onChange} />
+        </Box>
+        <Box w='50%' p='20px'>
+          <Md value={state} />
+        </Box>
+      </Flex>
     </>
   )
 }

@@ -9,24 +9,52 @@ import Home from './pages/Home';
 import Login from "./pages/Login";
 import { Posts, Post } from './pages/Blog';
 import { New } from './pages/Blog/New';
+import { Posts as StandalonePosts } from './pages/Standalone/Blog/Posts';
+import { Post as StandalonePost } from './pages/Standalone/Blog/Post';
 import Header from './components/Header';
 import { getToken } from './utils/getToken';
 
-export function App() {
+const PrivateRoute = () => {
   const isAdmin = getToken() ? true: false;
-  if (!isAdmin) history.pushState('', '', '/login');
+  const isStandalone = location.pathname.indexOf('standalone') !== -1;
+  if (isStandalone) history.pushState('', '', location.pathname);
+  else if (!isAdmin) history.pushState('', '', '/login');
+  return (
+    <BrowserRouter>
+      <Header isAdmin={isAdmin} isStandalone={isStandalone} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/blog' element={<Posts />} />
+        <Route path='/blog/:id' element={<Post />} />
+        <Route path='/blog/new' element={<New />} />
+        <Route path='/standalone' element={<Home />} />
+        <Route path='/standalone/blog' element={<StandalonePosts />} />
+        <Route path='/standalone/blog/:id' element={<StandalonePost />} />
+        <Route path='/standalone/blog/new' element={<New />} />
+        <Route path='/login' element={<Login isAdmin={isAdmin} />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+// const StandaloneRoute = () => {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path='/standalone' element={<Home />} />
+//         <Route path='/standalone/blog' element={<StandalonePosts />} />
+//         <Route path='/standalone/blog/:id' element={<StandalonePost />} />
+//         <Route path='/standalone/blog/new' element={<New />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// };
+
+export function App() {
   return (
     <ChakraProvider>
-      <BrowserRouter>
-        <Header isAdmin={isAdmin}/>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/blog' element={<Posts />} />
-          <Route path='/blog/:id' element={<Post />} />
-          <Route path='/blog/new' element={<New />} />
-          <Route path='/login' element={<Login isAdmin={isAdmin} />} />
-        </Routes>
-      </BrowserRouter>
+      <PrivateRoute />
+      {/* <StandaloneRoute /> */}
     </ChakraProvider>
   );
 };

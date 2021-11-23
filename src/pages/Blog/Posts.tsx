@@ -41,6 +41,16 @@ export const Posts = () => {
   }, []);
 
   return (
+    <PostsRenderer 
+      isLoading={isLoading}
+      posts={posts}
+    />
+  );
+}
+
+// isStandalone つけるならこのルーティング方法じゃなくてもよかったのでは...？
+export const PostsRenderer = ({ isLoading, posts, isStandalone = false }: { isLoading: boolean; posts: any; isStandalone?: boolean; }) => {
+  return (
     isLoading 
     ? (
       <Box textAlign='center' p='100px 0'>
@@ -64,14 +74,14 @@ export const Posts = () => {
             </Tr>
           </Thead>
             {
-              posts.map((p, index) => (
+              posts.map((p: any, index: number) => (
                 <Tbody key={index.toString()}>
                   <Tr>
                     <Td>{p.id}</Td>
                     <Td>{p.title}</Td>
                     <Td>{p.is_open ? <Badge colorScheme="green" variant="solid" fontSize="0.8em">公開中</Badge> : <Badge colorScheme="red" fontSize="0.8em">非公開</Badge>}</Td>
                     <Td>{p.pub_date}</Td>
-                    <Td><Link to={`/blog/${p.id}`}><Badge fontSize="0.8em">編集</Badge></Link></Td>
+                    <Td><Link to={isStandalone ? `/standalone/blog/${p.id}`: `/blog/${p.id}`}><Badge fontSize="0.8em">編集</Badge></Link></Td>
                   </Tr>
                 </Tbody>
               ))
@@ -80,4 +90,4 @@ export const Posts = () => {
       </Box>
     )
   );
-}
+};
