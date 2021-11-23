@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Flex, Box } from '@chakra-ui/layout';
-import { useState, useEffect } from 'preact/hooks';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
@@ -13,7 +14,8 @@ const initialState = {
   title: '',
 }
 
-export const Post = ({ id }: { id: number }) => {
+export const Post = () => {
+  const { id } = useParams<string>();
   const [post, setPost] = useState(initialState);
   const [state, setState] = useState(initialState);
   const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
@@ -34,13 +36,12 @@ export const Post = ({ id }: { id: number }) => {
 
   return (
     <>
-    {/* @ts-ignore */}
     <Flex p='30px'>
       <Box w='50%' p='20px'>
-        <Form value={state.contents} onChange={onChange} />
+        <Form value={state} onChange={onChange} />
       </Box>
       <Box w='50%' p='20px'>
-        <Md title={state.title} text={state.contents} />
+        <Md value={state} />
       </Box>
     </Flex>
     </>

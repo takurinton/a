@@ -1,3 +1,5 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -9,8 +11,7 @@ import {
   Badge,
   Spinner,
 } from "@chakra-ui/react"
-import { useEffect, useState } from 'preact/hooks';
-import { Link } from 'preact-router';
+import { Link } from 'react-router-dom';
 import { fetcher } from "../../utils/fetcher";
 
 const initialState = [
@@ -48,7 +49,7 @@ export const Posts = () => {
     ) : (
       <Box w='80vw' m='30px auto'>
         <Box textAlign='right' p='0 0 20px'>
-          <Link href='/blog/new'>
+          <Link to='/blog/new'>
             <Badge colorScheme="green" variant="solid" fontSize="1.2em">新しい投稿を作成</Badge>
           </Link>
         </Box>
@@ -70,7 +71,7 @@ export const Posts = () => {
                     <Td>{p.title}</Td>
                     <Td>{p.is_open ? <Badge colorScheme="green" variant="solid" fontSize="0.8em">公開中</Badge> : <Badge colorScheme="red" fontSize="0.8em">非公開</Badge>}</Td>
                     <Td>{p.pub_date}</Td>
-                    <Td><Link href={`/blog/${p.id}`}><Badge fontSize="0.8em">編集</Badge></Link></Td>
+                    <Td><Link to={`/blog/${p.id}`}><Badge fontSize="0.8em">編集</Badge></Link></Td>
                   </Tr>
                 </Tbody>
               ))

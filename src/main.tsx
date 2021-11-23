@@ -1,4 +1,5 @@
-import { render } from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { App } from './app';
 
-render(<App />, document.getElementById('app')!)
+ReactDOM.render(<App />, document.getElementById('app')!)

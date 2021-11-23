@@ -1,4 +1,9 @@
-import Router, { Route } from 'preact-router';
+import React from 'react';
+import { 
+  BrowserRouter,
+  Routes, 
+  Route 
+} from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react"
 import Home from './pages/Home';
 import Login from "./pages/Login";
@@ -12,15 +17,16 @@ export function App() {
   if (!isAdmin) history.pushState('', '', '/login');
   return (
     <ChakraProvider>
-      <Header isAdmin={isAdmin}/>
-      {/* @ts-ignore */}
-      <Router>
-        <Route path='/' component={Home} />
-        <Route path='/blog' component={Posts} />
-        <Route path='/blog/:id' component={Post} />
-        <Route path='/blog/new' component={New} />
-        <Route path='/login' component={() => <Login isAdmin={isAdmin} />}/>
-      </Router>
+      <BrowserRouter>
+        <Header isAdmin={isAdmin}/>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/blog' element={<Posts />} />
+          <Route path='/blog/:id' element={<Post />} />
+          <Route path='/blog/new' element={<New />} />
+          <Route path='/login' element={<Login isAdmin={isAdmin} />} />
+        </Routes>
+      </BrowserRouter>
     </ChakraProvider>
   );
 };
