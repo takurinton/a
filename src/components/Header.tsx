@@ -13,6 +13,11 @@ import {
 const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boolean; }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
+
   return (
     <Flex
       as='nav'
@@ -57,7 +62,25 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
       </Stack>
 
       {
-        isAdmin ? <></> : (
+        isAdmin ? (
+          <Box
+            display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
+            mt={{ base: 4, md: 0 }}
+          >
+            <Button
+              variant='outline'
+              _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+            >
+              <Link to='/' onClick={logout}>Logout</Link>
+            </Button>
+            <Button
+              variant='outline'
+              _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+            >
+              <Link to='/standalone'>standaloneで試す</Link>
+            </Button>
+          </Box>
+        ) : (
           <Box
             display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
             mt={{ base: 4, md: 0 }}
