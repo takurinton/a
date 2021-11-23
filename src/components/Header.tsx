@@ -59,6 +59,12 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
             >
               <Link to='/login'>Login</Link>
             </Button>
+            <Button
+              variant='outline'
+              _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+            >
+              <Link to='/standalone'>standaloneで試す</Link>
+            </Button>
           </Box>
         )
       }
