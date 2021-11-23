@@ -47,15 +47,15 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
         mt={{ base: 4, md: 0 }}
       >
         {
-        isAdmin ? (
-            <>
-              <Text><Link to='/blog'>BLOG</Link></Text>
-              <Text><Link to='/portfolio'>PORTFOLIO</Link></Text>
-            </>
-          ) : isStandalone ? (
+        isStandalone ? (
             <>
               <Text><Link to='/standalone/blog'>BLOG</Link></Text>
               <Text><Link to='/standalone/portfolio'>PORTFOLIO</Link></Text>
+            </>
+          ) : isAdmin ? (
+            <>
+              <Text><Link to='/blog'>BLOG</Link></Text>
+              <Text><Link to='/portfolio'>PORTFOLIO</Link></Text>
             </>
           ): <></>
         }
@@ -73,12 +73,6 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
             >
               <Link to='/' onClick={logout}>Logout</Link>
             </Button>
-            <Button
-              variant='outline'
-              _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
-            >
-              <Link to='/standalone'>standaloneで試す</Link>
-            </Button>
           </Box>
         ) : (
           <Box
@@ -94,8 +88,9 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
             <Button
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+              onClick={() => window.location.reload()}
             >
-              <Link to='/standalone'>standaloneで試す</Link>
+              <Link to='/standalone/blog'>standaloneで試す</Link>
             </Button>
           </Box>
         )

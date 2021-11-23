@@ -27,30 +27,34 @@ const PrivateRoute = () => {
         <Route path='/blog' element={<Posts />} />
         <Route path='/blog/:id' element={<Post />} />
         <Route path='/blog/new' element={<New />} />
+        <Route path='/standalone' element={<Home />} />
+        <Route path='/standalone/blog' element={<StandalonePosts />} />
+        <Route path='/standalone/blog/:id' element={<StandalonePost />} />
+        <Route path='/standalone/blog/new' element={<New />} />
         <Route path='/login' element={<Login isAdmin={isAdmin} />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
-const StandaloneRoute = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/standalone' element={<Home />} />
-        <Route path='/standalone/blog' element={<StandalonePosts />} />
-        <Route path='/standalone/blog/:id' element={<StandalonePost />} />
-        <Route path='/standalone/blog/new' element={<New />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+// const StandaloneRoute = () => {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path='/standalone' element={<Home />} />
+//         <Route path='/standalone/blog' element={<StandalonePosts />} />
+//         <Route path='/standalone/blog/:id' element={<StandalonePost />} />
+//         <Route path='/standalone/blog/new' element={<New />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// };
 
 export function App() {
   return (
     <ChakraProvider>
       <PrivateRoute />
-      <StandaloneRoute />
+      {/* <StandaloneRoute /> */}
     </ChakraProvider>
   );
 };
