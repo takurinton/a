@@ -89,11 +89,11 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
               onClick={() => {
-                history.pushState('', '', '/standalone/blog');
-                window.location.reload();
+                // history.pushState('', '', '/standalone/blog');
+                // window.location.reload();
               }}
             >
-              standaloneで試す
+              <Link to='/standalone/blog'>standaloneで試す</Link>
             </Button>
           </Box>
         )
