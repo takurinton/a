@@ -41,6 +41,15 @@ export const Posts = () => {
   }, []);
 
   return (
+    <PostsRenderer 
+      isLoading={isLoading}
+      posts={posts}
+    />
+  );
+}
+
+export const PostsRenderer = ({ isLoading, posts }: { isLoading: boolean; posts: any; }) => {
+  return (
     isLoading 
     ? (
       <Box textAlign='center' p='100px 0'>
@@ -64,7 +73,7 @@ export const Posts = () => {
             </Tr>
           </Thead>
             {
-              posts.map((p, index) => (
+              posts.map((p: any, index: number) => (
                 <Tbody key={index.toString()}>
                   <Tr>
                     <Td>{p.id}</Td>
@@ -80,4 +89,4 @@ export const Posts = () => {
       </Box>
     )
   );
-}
+};
