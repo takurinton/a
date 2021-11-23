@@ -10,7 +10,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 
-const Header = ({ isAdmin }: { isAdmin: boolean }) => {
+const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boolean; }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -25,7 +25,11 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
-          { isAdmin ? <Link to='/'>admin.takurinton.dev</Link> : <>admin.takurinton.com</> }
+          { isAdmin ? (
+            <Link to='/'>admin.takurinton.dev</Link>
+           ) : isStandalone ? (
+            <Link to='/standalone'>admin.takurinton.dev</Link>
+           ): <>admin.takurinton.com</> }
         </Heading>
       </Flex>
 
@@ -43,7 +47,12 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
               <Text><Link to='/blog'>BLOG</Link></Text>
               <Text><Link to='/portfolio'>PORTFOLIO</Link></Text>
             </>
-          ) : <></>
+          ) : isStandalone ? (
+            <>
+              <Text><Link to='/standalone/blog'>BLOG</Link></Text>
+              <Text><Link to='/standalone/portfolio'>PORTFOLIO</Link></Text>
+            </>
+          ): <></>
         }
       </Stack>
 

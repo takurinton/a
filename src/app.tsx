@@ -16,10 +16,12 @@ import { getToken } from './utils/getToken';
 
 const PrivateRoute = () => {
   const isAdmin = getToken() ? true: false;
-  if (!isAdmin) history.pushState('', '', '/login');
+  const isStandalone = location.pathname.indexOf('standalone') !== -1;
+  if (isStandalone) history.pushState('', '', location.pathname);
+  else if (!isAdmin) history.pushState('', '', '/login');
   return (
     <BrowserRouter>
-      <Header isAdmin={isAdmin}/>
+      <Header isAdmin={isAdmin} isStandalone={isStandalone} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blog' element={<Posts />} />
