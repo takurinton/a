@@ -38,10 +38,10 @@ export const Post = () => {
     <>
     <Flex p='30px'>
       <Box w='50%' p='20px'>
-        <Form value={state.contents} onChange={onChange} />
+        <Form value={state} onChange={onChange} />
       </Box>
       <Box w='50%' p='20px'>
-        <Md title={state.title} text={state.contents} />
+        <Md value={state} />
       </Box>
     </Flex>
     </>
