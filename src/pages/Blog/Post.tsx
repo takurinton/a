@@ -34,6 +34,7 @@ export const Post = () => {
   };
 
   const onSubmit = () => {
+    // PATCH にする
     // console.log('on submit');
     // (async () => await fetcher({
     //   url: 'https://api.takurinton.com/admin/blog',
