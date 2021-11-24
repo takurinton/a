@@ -4,6 +4,7 @@ import { Flex, Box } from '@chakra-ui/layout';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
+import { Button } from '@chakra-ui/button';
 
 const initialState = {
   category: '',
@@ -32,17 +33,40 @@ export const Post = () => {
     setState({ ...state, [event.target.name]: event.target.value});
   };
 
+  const onSubmit = () => {
+    // console.log('on submit');
+    // (async () => await fetcher({
+    //   url: 'https://api.takurinton.com/admin/blog',
+    //   _body: JSON.stringify(state),
+    //   method: 'POST'
+    // })
+    // .then(res => {
+    //   if (res.status !== 201) {
+    //     console.log('error');
+    //   };
+    //   window.history.pushState('', '', '/blog');
+    // }))();
+  };
+
   return (
-    <PostRenderer state={state} onChange={onChange} />
+    <PostRenderer state={state} onChange={onChange} onSubmit={onSubmit} />
   )
 }
 
-export const PostRenderer = ({ state, onChange }: { state: any; onChange: (value: any) => void; }) => {
+export const PostRenderer = ({ 
+  state, 
+  onChange,
+  onSubmit,
+}: { 
+  state: any; 
+  onChange: (value: any) => void;
+  onSubmit: () => void;
+}) => {
   return (
     <>
       <Flex p='30px'>
         <Box w='50%' p='20px'>
-          <Form value={state} onChange={onChange} />
+          <Form value={state} onChange={onChange} onSubmit={onSubmit} />
         </Box>
         <Box w='50%' p='20px'>
           <Md value={state} />

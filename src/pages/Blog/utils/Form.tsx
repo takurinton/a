@@ -4,14 +4,17 @@ import {
   Input,
   Textarea,
   Select,
+  Button,
 } from '@chakra-ui/react';
 
 export const Form = ({
   value,
   onChange,
+  onSubmit,
 }: {
   value: any;
   onChange: (event: any) => void;
+  onSubmit: () => void;
 }) => {
   const getHight = (value: string) => {
     return value.split('\n').length;
@@ -39,6 +42,10 @@ export const Form = ({
         <option value="true">公開</option>
         <option value="false">非公開</option>
       </Select>
+      <Button 
+        type='button' 
+        onClick={onSubmit}
+      >保存</Button>
     </form>
   );
 };

@@ -27,6 +27,6 @@ export const Post = () => {
   };
 
   return (
-    <PostRenderer state={state} onChange={onChange} />
+    <PostRenderer state={state} onChange={onChange} onSubmit={() => console.log('click onSubmit!!!')}/>
   );
 };
