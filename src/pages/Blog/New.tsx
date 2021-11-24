@@ -46,7 +46,7 @@ export const New = () => {
   return (
     <Flex p='30px'>
       <Box w='50%' p='20px'>
-        <Form state={{ ...state, category: '' }} categories={categories} onChange={onChange} onSubmit={onSubmit} />
+        <Form state={state} categories={categories} onChange={onChange} onSubmit={onSubmit} />
       </Box>
       <Box w='50%' p='20px'>
         <Md value={state} />

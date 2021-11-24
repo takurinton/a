@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FormControl,
   Input,
   Textarea,
-  // Select,
   Button,
 } from '@chakra-ui/react';
 import { Select } from "@chakra-ui/select"
@@ -19,12 +18,10 @@ export const Form = ({
   onChange: (event: any) => void;
   onSubmit: () => void;
 }) => {
-
-  const [innerState, setInnerState] = useState(state);
   const getHight = (value: string) => {
     return value.split('\n').length;
   };
-
+  
   return (
     <form>
       <FormControl id='title' isRequired h='100px'>
@@ -52,7 +49,8 @@ export const Form = ({
         <option value='true'>公開</option>
         <option value='false'>非公開</option>
       </Select>
-      <Select p='40px 0 40px' onChange={onChange} name='category' value={state.category}>
+
+      <Select p='40px 0 40px' onChange={onChange} name='category' value={state.category} placeholder={state.category}>
         {
           categories.category.map(c => <option value={c.name}>{c.name}</option>)
         }
