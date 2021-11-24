@@ -55,7 +55,7 @@ export const Post = () => {
       method: 'PATCH'
     })
     .then(res => {
-      if (res.status !== 201) {
+      if (res.title !== state.title) {
         console.log('error');
       };
       window.history.pushState('', '', '/blog');

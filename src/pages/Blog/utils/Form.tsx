@@ -24,7 +24,6 @@ export const Form = ({
     return value.split('\n').length;
   };
 
-  console.log(state)
   return (
     <form>
       <FormControl id='title' isRequired h='100px'>
