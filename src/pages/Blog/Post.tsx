@@ -4,14 +4,13 @@ import { Flex, Box } from '@chakra-ui/layout';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
-import { Button } from '@chakra-ui/button';
 
 const initialState = {
   category: '',
   contents: '',
   id: 0,
   is_open: null,
-  pub_date: '',
+  pub_date: new Date(),
   title: '',
 }
 
@@ -42,19 +41,21 @@ export const Post = () => {
   };
 
   const onSubmit = () => {
-    // PATCH にする
-    // console.log('on submit');
-    // (async () => await fetcher({
-    //   url: 'https://api.takurinton.com/admin/blog',
-    //   _body: JSON.stringify(state),
-    //   method: 'POST'
-    // })
-    // .then(res => {
-    //   if (res.status !== 201) {
-    //     console.log('error');
-    //   };
-    //   window.history.pushState('', '', '/blog');
-    // }))();
+    (async () => await fetcher({
+      url: `https://api.takurinton.com/admin/blog/post/${id}`,
+      _body: JSON.stringify({
+        ...state,
+        is_open: state.is_open === 'true' ? true: false,
+        pub_date: state.pub_date.toISOString(),
+      }),
+      method: 'PATCH'
+    })
+    .then(res => {
+      if (res.status !== 201) {
+        console.log('error');
+      };
+      window.history.pushState('', '', '/blog');
+    }))();
   };
 
   return (

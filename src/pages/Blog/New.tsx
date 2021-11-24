@@ -8,9 +8,8 @@ import { fetcher } from '../../utils/fetcher';
 const initialState = {
   category: '',
   contents: '',
-  id: 0,
   is_open: null,
-  pub_date: '',
+  pub_date: new Date(),
   title: '',
 }
 
@@ -28,7 +27,6 @@ export const New = () => {
   };
 
   const onSubmit = () => {
-    console.log('submited!!');
     handleSubmit();
   };
 

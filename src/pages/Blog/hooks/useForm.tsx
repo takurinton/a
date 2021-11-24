@@ -5,9 +5,8 @@ export const useForm = () => {
   const [state, setState] = useState({
     category: '',
     contents: '',
-    id: 0,
-    is_open: null,
-    pub_date: '',
+    is_open: 'false',
+    pub_date: new Date(),
     title: '',
   })
 
@@ -18,7 +17,11 @@ export const useForm = () => {
   const handleSubmit = () => {
     (async () => await fetcher({
       url: 'https://api.takurinton.com/admin/blog',
-      _body: JSON.stringify(state),
+      _body: JSON.stringify({
+        ...state,
+        is_open: state.is_open === 'true' ? true: false,
+        pub_date: state.pub_date.toISOString(),
+      }),
       method: 'POST'
     })
     .then(res => {

@@ -7,9 +7,8 @@ import { Md } from '../../Blog/utils/Md';
 const initialState = {
   category: '',
   contents: '',
-  id: 0,
   is_open: null,
-  pub_date: '',
+  pub_date: new Date(),
   title: '',
 }
 

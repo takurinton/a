@@ -5,7 +5,8 @@ import {
   Textarea,
   Button,
 } from '@chakra-ui/react';
-import { Select } from "@chakra-ui/select"
+import { Select } from "@chakra-ui/select";
+import DatePicker from "react-datepicker";
 
 export const Form = ({
   state,
@@ -44,17 +45,26 @@ export const Form = ({
         name='is_open'
         value={state.is_open}
         onChange={onChange}
-        placeholder={state.is_open}
       >
         <option value='true'>公開</option>
         <option value='false'>非公開</option>
       </Select>
 
-      <Select p='40px 0 40px' onChange={onChange} name='category' value={state.category} placeholder={state.category}>
+      <Select p='40px 0 40px' onChange={onChange} name='category' value={state.category}>
         {
           categories.category.map(c => <option value={c.name}>{c.name}</option>)
         }
       </Select> 
+
+      <DatePicker 
+        dateFormat='yyyy-MM-dd'
+        selected={new Date(state.pub_date)} 
+        value={'2021-11-16T14:38:22Z'}
+        name='pub_date'
+        wrapperClassName="datePicker"
+        onChange={onChange}
+      />
+
       <Button 
         type='button' 
         onClick={onSubmit}
