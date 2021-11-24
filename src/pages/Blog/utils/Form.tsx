@@ -13,6 +13,10 @@ export const Form = ({
   value: any;
   onChange: (event: any) => void;
 }) => {
+  const getHight = (value: string) => {
+    return value.split('\n').length;
+  };
+
   return (
     <form>
       <FormControl id='title' isRequired h='100px'>
@@ -27,6 +31,8 @@ export const Form = ({
         placeholder="記事を書く"
         border="none"
         fontSize='1.2rem'
+        minHeight='300px'
+        rows={getHight(value.contents)}
       />
 
       <Select p='40px 0 40px' onChange={onChange} name='is_open' value={value.is_open}>
