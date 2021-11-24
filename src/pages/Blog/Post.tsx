@@ -30,7 +30,7 @@ export const Post = () => {
         url: curl,
         method: 'GET',
       })
-      setState({ ...p, category: '' });
+      setState(p);
       setCategories(c);
     })();
   }, []);

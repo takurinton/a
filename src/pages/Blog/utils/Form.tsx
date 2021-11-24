@@ -53,7 +53,12 @@ export const Form = ({
 
       <Select p='40px 0 40px' onChange={onChange} name='category' value={state.category}>
         {
-          categories.category.map(c => <option value={c.name}>{c.name}</option>)
+          categories.category.map(c => {
+            if (c.name === state.category) {
+              return <option value={c.name} selected>{c.name}</option>;
+            }
+            return <option value={c.name}>{c.name}</option>;
+          })
         }
       </Select> 
 
