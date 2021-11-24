@@ -9,7 +9,7 @@ const initialState = [
     contents: '',
     id: 0,
     is_open: null,
-    pub_date: '',
+    pub_date: new Date(),
     title: '',
   },
 ];

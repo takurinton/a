@@ -10,39 +10,79 @@ const initialState = {
   contents: '',
   id: 0,
   is_open: null,
-  pub_date: '',
+  pub_date: new Date(),
   title: '',
 }
 
 export const Post = () => {
   const { id } = useParams<string>();
   const [state, setState] = useState(initialState);
-  const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
+  const [categories, setCategories] = useState({ category: [{ id: 0, name: '' }]});
+  const purl = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
+  const curl = `${import.meta.env.VITE_API_URL}/admin/blog/category`;
   useEffect(() => {
     (async () => {
       const p = await fetcher({
-        url,
+        url: purl,
         method: 'GET',
       });
-      setState(p);
+      const c = await fetcher({
+        url: curl,
+        method: 'GET',
+      })
+      setState({ ...p, category: '' });
+      setCategories(c);
     })();
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.value});
+    if (!event.target) {
+      // @ts-ignore
+      setState({ ...state, pub_date: event });
+    } else {
+      setState({ ...state, [event.target.name]: event.target.value});
+    }
+  };
+
+  const onSubmit = () => {
+    (async () => await fetcher({
+      url: `https://api.takurinton.com/admin/blog/post/${id}`,
+      _body: JSON.stringify({
+        ...state,
+        is_open: state.is_open === 'true' ? true: false,
+        pub_date: state.pub_date.toISOString(),
+      }),
+      method: 'PATCH'
+    })
+    .then(res => {
+      if (res.title !== state.title) {
+        console.log('error');
+      };
+      window.history.pushState('', '', '/blog');
+    }))();
   };
 
   return (
-    <PostRenderer state={state} onChange={onChange} />
+    <PostRenderer state={state} categories={categories} onChange={onChange} onSubmit={onSubmit} />
   )
 }
 
-export const PostRenderer = ({ state, onChange }: { state: any; onChange: (value: any) => void; }) => {
+export const PostRenderer = ({ 
+  state, 
+  categories,
+  onChange,
+  onSubmit,
+}: { 
+  state: any; 
+  categories: { category: { id: number, name: string }[]};
+  onChange: (value: any) => void;
+  onSubmit: () => void;
+}) => {
   return (
     <>
       <Flex p='30px'>
         <Box w='50%' p='20px'>
-          <Form value={state} onChange={onChange} />
+          <Form state={state} categories={categories} onChange={onChange} onSubmit={onSubmit} />
         </Box>
         <Box w='50%' p='20px'>
           <Md value={state} />

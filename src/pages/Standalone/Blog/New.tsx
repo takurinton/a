@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
-import { useForm } from './hooks/useForm';
-import { Form } from './utils/Form';
-import { Md } from './utils/Md';
-import { fetcher } from '../../utils/fetcher';
+import { useForm } from '../../Blog/hooks/useForm';
+import { Form } from '../../Blog/utils/Form';
+import { Md } from '../../Blog/utils/Md';
 
 const initialState = {
   category: '',
@@ -12,6 +11,23 @@ const initialState = {
   pub_date: new Date(),
   title: '',
 }
+
+const _categories = {
+  category: [
+    {
+      id: 1,
+      name: 'react',
+    },
+    {
+      id: 2,
+      name: 'frontend',
+    },
+    {
+      id: 3,
+      name: 'poem',
+    },
+  ]
+};
 
 export const New = () => {
   const {
@@ -27,18 +43,12 @@ export const New = () => {
   };
 
   const onSubmit = () => {
+    console.log('submited!!');
     handleSubmit();
   };
 
   useEffect(() => {
-    const curl = `${import.meta.env.VITE_API_URL}/admin/blog/category`;
-    (async () => {
-      const c = await fetcher({
-        url: curl,
-        method: 'GET',
-      })
-      setCategories(c);
-    })();
+    setCategories(_categories);
   }, []);
 
   return (

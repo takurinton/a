@@ -11,6 +11,7 @@ import { Posts, Post } from './pages/Blog';
 import { New } from './pages/Blog/New';
 import { Posts as StandalonePosts } from './pages/Standalone/Blog/Posts';
 import { Post as StandalonePost } from './pages/Standalone/Blog/Post';
+import { New as StandaloneNew } from './pages/Standalone/Blog/New';
 import Header from './components/Header';
 import { getToken } from './utils/getToken';
 
@@ -30,7 +31,7 @@ const PrivateRoute = () => {
         <Route path='/standalone' element={<Home />} />
         <Route path='/standalone/blog' element={<StandalonePosts />} />
         <Route path='/standalone/blog/:id' element={<StandalonePost />} />
-        <Route path='/standalone/blog/new' element={<New />} />
+        <Route path='/standalone/blog/new' element={<StandaloneNew />} />
         <Route path='/login' element={<Login isAdmin={isAdmin} />} />
       </Routes>
     </BrowserRouter>
