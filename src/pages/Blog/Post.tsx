@@ -18,19 +18,27 @@ const initialState = {
 export const Post = () => {
   const { id } = useParams<string>();
   const [state, setState] = useState(initialState);
-  const url = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
+  const [categories, setCategories] = useState({ category: [{ id: 0, name: '' }]});
+  const purl = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
+  const curl = `${import.meta.env.VITE_API_URL}/admin/blog/category`;
   useEffect(() => {
     (async () => {
       const p = await fetcher({
-        url,
+        url: purl,
         method: 'GET',
       });
-      setState(p);
+      const c = await fetcher({
+        url: curl,
+        method: 'GET',
+      })
+      setState({ ...p, category: '' });
+      setCategories(c);
     })();
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.value});
+    console.log({ ...state, [event.target.name]: event.target.value })
+    setState({ ...state, [event.target.name]: event.target.value });
   };
 
   const onSubmit = () => {
@@ -50,16 +58,18 @@ export const Post = () => {
   };
 
   return (
-    <PostRenderer state={state} onChange={onChange} onSubmit={onSubmit} />
+    <PostRenderer state={state} categories={categories} onChange={onChange} onSubmit={onSubmit} />
   )
 }
 
 export const PostRenderer = ({ 
   state, 
+  categories,
   onChange,
   onSubmit,
 }: { 
   state: any; 
+  categories: { category: { id: number, name: string }[]};
   onChange: (value: any) => void;
   onSubmit: () => void;
 }) => {
@@ -67,7 +77,7 @@ export const PostRenderer = ({
     <>
       <Flex p='30px'>
         <Box w='50%' p='20px'>
-          <Form value={state} onChange={onChange} onSubmit={onSubmit} />
+          <Form state={state} categories={categories} onChange={onChange} onSubmit={onSubmit} />
         </Box>
         <Box w='50%' p='20px'>
           <Md value={state} />

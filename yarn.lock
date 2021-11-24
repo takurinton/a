@@ -649,7 +649,7 @@
     "@chakra-ui/utils" "1.9.1"
     "@chakra-ui/visually-hidden" "1.1.1"
 
-"@chakra-ui/select@1.2.1":
+"@chakra-ui/select@1.2.1", "@chakra-ui/select@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@chakra-ui/select/-/select-1.2.1.tgz#a014c44efdc992ced96a4a74364148a4846c3d1f"
   integrity sha512-GqRmYGjVnw/Z/2RQiW7Ywuu9O5E0spmMUBjeE/v0rqjixBqrmdApjg5pmJ4YmUMvUI/WkGtR3FR5W9Y5PpvfKw==
