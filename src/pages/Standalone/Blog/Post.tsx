@@ -12,6 +12,23 @@ const initialState = {
   title: '',
 }
 
+const categories = {
+  category: [
+    {
+      id: 1,
+      name: 'react',
+    },
+    {
+      id: 2,
+      name: 'frontend',
+    },
+    {
+      id: 3,
+      name: 'poem',
+    },
+  ]
+};
+
 export const Post = () => {
   const { id } = useParams<string>();
   const [state, setState] = useState(initialState);
@@ -27,6 +44,6 @@ export const Post = () => {
   };
 
   return (
-    <PostRenderer state={state} onChange={onChange} onSubmit={() => console.log('click onSubmit!!!')}/>
+    <PostRenderer state={state} categories={categories} onChange={onChange} onSubmit={() => console.log('click onSubmit!!!')}/>
   );
 };

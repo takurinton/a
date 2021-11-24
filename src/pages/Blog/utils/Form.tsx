@@ -21,7 +21,7 @@ export const Form = ({
   const getHight = (value: string) => {
     return value.split('\n').length;
   };
-  
+
   return (
     <form>
       <FormControl id='title' isRequired h='100px'>

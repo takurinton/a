@@ -59,7 +59,7 @@ export const PostsRenderer = ({ isLoading, posts, isStandalone = false }: { isLo
     ) : (
       <Box w='80vw' m='30px auto'>
         <Box textAlign='right' p='0 0 20px'>
-          <Link to='/blog/new'>
+          <Link to={isStandalone ? '/standalone/blog/new' : '/blog/new'}>
             <Badge colorScheme="green" variant="solid" fontSize="1.2em">新しい投稿を作成</Badge>
           </Link>
         </Box>
