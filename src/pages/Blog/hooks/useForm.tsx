@@ -11,7 +11,13 @@ export const useForm = () => {
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.value});
+    if (!event.target) {
+      // @ts-ignore
+      setState({ ...state, pub_date: event });
+    } else {
+      setState({ ...state, [event.target.name]: event.target.value});
+    }
+    
   };
   
   const handleSubmit = () => {
@@ -25,7 +31,8 @@ export const useForm = () => {
       method: 'POST'
     })
     .then(res => {
-      if (res.status !== 201) {
+      console.log(res)
+      if (res.title !== state.title) {
         console.log('error');
       };
       window.history.pushState('', '', '/blog');
