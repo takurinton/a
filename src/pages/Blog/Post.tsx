@@ -36,7 +36,12 @@ export const Post = () => {
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.value });
+    if (!event.target) {
+      // @ts-ignore
+      setState({ ...state, pub_date: event });
+    } else {
+      setState({ ...state, [event.target.name]: event.target.value});
+    }
   };
 
   const onSubmit = () => {

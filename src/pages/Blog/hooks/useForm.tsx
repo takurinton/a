@@ -17,7 +17,6 @@ export const useForm = () => {
     } else {
       setState({ ...state, [event.target.name]: event.target.value});
     }
-    
   };
   
   const handleSubmit = () => {
