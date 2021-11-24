@@ -36,7 +36,6 @@ export const Post = () => {
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log({ ...state, [event.target.name]: event.target.value })
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
