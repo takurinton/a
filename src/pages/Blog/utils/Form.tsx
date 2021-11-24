@@ -59,7 +59,7 @@ export const Form = ({
       <DatePicker 
         dateFormat='yyyy-MM-dd'
         selected={new Date(state.pub_date)} 
-        value={'2021-11-16T14:38:22Z'}
+        value={new Date(state.pub_date)}
         name='pub_date'
         wrapperClassName="datePicker"
         onChange={onChange}
