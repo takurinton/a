@@ -6,7 +6,6 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { Select } from "@chakra-ui/select";
-// @ts-ignore
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -62,7 +61,6 @@ export const Form = ({
       <DatePicker 
         dateFormat='yyyy/MM/dd hh:mm:ss'
         selected={new Date(state.pub_date)} 
-        value={new Date(state.pub_date)}
         name='pub_date'
         showTimeSelect
         wrapperClassName="datePicker"

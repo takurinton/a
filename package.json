@@ -13,6 +13,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@types/next": "^9.0.0",
+    "@types/react-datepicker": "^4.3.2",
     "@types/react-syntax-highlighter": "^13.5.2",
     "framer-motion": "^4",
     "react": "^17.0.0",
