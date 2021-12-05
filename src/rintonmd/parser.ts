@@ -9,6 +9,8 @@ const root: Token = {
   parent: {} as Token,
 }
 
+// tokenize function 
+// text to ast
 const tokenize = ({
   textElement,
   initId = 0,
@@ -45,6 +47,7 @@ const tokenize = ({
           t = t.replace(_t, '');
         }
 
+        id += 1;
         const el = getStrongElement({
           id, 
           content: '', 
@@ -57,6 +60,7 @@ const tokenize = ({
         _tokenize(matchStrongText[1], parent); // 最初即時実行関数でやろうとしてたけど、再帰できないから定義した。
         parent = _parent;
       } else if (matchH1Text) {
+        id += 1;
         const el = getH1Element({
           id, 
           content: '', 
@@ -83,6 +87,7 @@ const tokenize = ({
   return els;
 }
 
+// parse md to ast
 export const parse = (md: string) => {
   return tokenize({ textElement: md });
 }

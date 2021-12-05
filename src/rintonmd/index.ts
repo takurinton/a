@@ -1,7 +1,12 @@
 import { parse } from "./parser";
+import { generate } from './generator';
 
+// core package
 export const rintonmd = (md: string) => {
   const mdList = md.split(/\r\n|\r|\n/);
   const astList = mdList.map(md => parse(md));
-  return astList;
+  const htmlList = generate(astList);
+  // console.log(astList);
+  // console.log(htmlList);
+  return htmlList;
 }
