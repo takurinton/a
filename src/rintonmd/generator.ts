@@ -24,6 +24,12 @@ const renderToHTML = ({
   parentToken: Token;
 }) => {
   let content = '';
+
+  // 改行による空文字対策
+  if (!parentToken || !currentToken) {
+    return '';
+  }
+
   switch (parentToken.elementType) {
     case 'h1':
       content = `<h1 class="h1">${currentToken.content}</h1>`;
@@ -41,6 +47,6 @@ export const generate = (astList: Token[][]) => {
     const parentToken = ast[0];
     const currentToken = ast[1];
     const html = renderToHTML({ currentToken, parentToken });
-    return generateHTML(ast);
+    return html;
   });
 }
