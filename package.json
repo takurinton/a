@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "rintonmd/debug": "npx ts-node ./src/rintonmd/index.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",

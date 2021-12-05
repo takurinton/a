@@ -1,4 +1,3 @@
-export const rintonmd = () => {
-  const name = "rintonmd";
-  console.log(name);
+export const rintonmd = (md: string) => {
+  return md;
 };
