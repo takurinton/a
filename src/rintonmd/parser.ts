@@ -1,4 +1,5 @@
-import { getH1Element, getStrongElement, getTextElement, matchH1, matchStrong } from "./lexer";
+import { getH1Element, getStrongElement, getTextElement } from "./lexer";
+import { matchH1, matchStrong } from './rules';
 import type { Token } from "./token";
 
 const root: Token = {
