@@ -58,3 +58,7 @@ export const getH1Element = ({
 export const matchStrong = (text: string) => {
   return text.match(/\*\*(.*?)\*\*/);
 }
+
+export const matchH1 = (text: string) => {
+  return text.match(/# (.*?)/);
+}

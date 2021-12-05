@@ -1,4 +1,4 @@
-import { getStrongElement, getTextElement, matchStrong } from "./lexer";
+import { getH1Element, getStrongElement, getTextElement, matchH1, matchStrong } from "./lexer";
 import type { Token } from "./token";
 
 const root: Token = {
@@ -27,17 +27,23 @@ const tokenize = ({
     
     while(t.length !== 0) {
       const matchStrongText = matchStrong(t) as RegExpMatchArray; // strong match
-      id += 1;
+      const matchH1Text = matchH1(t) as RegExpMatchArray; // h1 match
 
-      if (matchStrongText == null) { // 一時退避、textElement まできたらおしまい
-        const text = getTextElement({
-          id, 
-          content: t, 
-          parent,
-        });
-        t = '';
-        els.push(text);
-      } else {
+      if (matchStrongText) {
+        // aaa**bb**cc の時の対応
+        // 参考: https://www.m3tech.blog/entry/2021/08/23/124000
+        if (Number(matchStrongText.index) > 0) {
+          const _t = t.substring(0, Number(matchStrongText.index));
+          id += 1;
+          const _tEl = getTextElement({
+            id, 
+            content: _t, 
+            parent,
+          });
+          els.push(_tEl);
+          t = t.replace(_t, '');
+        }
+
         const el = getStrongElement({
           id, 
           content: '', 
@@ -49,6 +55,26 @@ const tokenize = ({
         t = t.replace(matchStrongText[0], ''); // 読んだやつを消す、これがないと無限ループになる
         _tokenize(matchStrongText[1], parent); // 最初即時実行関数でやろうとしてたけど、再帰できないから定義した。
         parent = _parent;
+      } else if (matchH1Text) {
+        const el = getH1Element({
+          id, 
+          content: '', 
+          parent
+        });
+        parent = el;
+        els.push(el);
+
+        t = t.replace(matchH1Text[0], '');
+        _tokenize(matchH1Text[1], parent);
+      } else {
+        id += 1;
+        const text = getTextElement({
+          id, 
+          content: t, 
+          parent,
+        });
+        t = '';
+        els.push(text);
       }
     }
   }
