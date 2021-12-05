@@ -41,7 +41,6 @@ export const generate = (astList: Token[][]) => {
     const parentToken = ast[0];
     const currentToken = ast[1];
     const html = renderToHTML({ currentToken, parentToken });
-    console.log(html)
     return generateHTML(ast);
   });
 }
