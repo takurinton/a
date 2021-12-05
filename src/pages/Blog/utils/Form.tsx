@@ -8,6 +8,7 @@ import {
 import { Select } from "@chakra-ui/select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { rintonmd } from '../../../rintonmd';
 
 export const Form = ({
   state,
@@ -23,6 +24,7 @@ export const Form = ({
   const getHight = (value: string) => {
     return value.split('\n').length;
   };
+
 
   return (
     <form>
