@@ -25,9 +25,6 @@ export const Form = ({
     return value.split('\n').length;
   };
 
-  // debug rintonmd...
-  const md = rintonmd(state.contents);
-  console.log(md);
 
   return (
     <form>
