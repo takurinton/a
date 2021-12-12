@@ -28,7 +28,7 @@ const initialState = [
 export const Posts = () => {
   const [posts, setPosts] = useState(initialState);
   const [isLoading, setIsLoading] = useState(true);
-  const url = `${import.meta.env.VITE_API_URL}/admin/blog`;
+  const url = `https://api.takurinton.com/admin/blog`;
   useEffect(() => {
     (async () => {
       const p = await fetcher({
