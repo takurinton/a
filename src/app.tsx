@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react"
 import Home from './pages/Home';
-import Login from "./pages/Login";
+import { Login } from "./pages/Login";
 import { Posts, Post } from './pages/Blog';
 import { New } from './pages/Blog/New';
 import { Posts as StandalonePosts } from './pages/Standalone/Blog/Posts';
