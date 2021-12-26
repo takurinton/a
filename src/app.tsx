@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react"
 import Home from './pages/Home';
-import { Login } from "./pages/Login";
 import { Posts, Post } from './pages/Blog';
 import { New } from './pages/Blog/New';
 import { Posts as StandalonePosts } from './pages/Standalone/Blog/Posts';
@@ -32,24 +31,10 @@ const PrivateRoute = () => {
         <Route path='/standalone/blog' element={<StandalonePosts />} />
         <Route path='/standalone/blog/:id' element={<StandalonePost />} />
         <Route path='/standalone/blog/new' element={<StandaloneNew />} />
-        <Route path='/login' element={<Login isAdmin={isAdmin} />} />
       </Routes>
     </BrowserRouter>
   );
 };
-
-// const StandaloneRoute = () => {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path='/standalone' element={<Home />} />
-//         <Route path='/standalone/blog' element={<StandalonePosts />} />
-//         <Route path='/standalone/blog/:id' element={<StandalonePost />} />
-//         <Route path='/standalone/blog/new' element={<New />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// };
 
 export function App() {
   return (

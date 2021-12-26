@@ -30,7 +30,6 @@ export const useForm = () => {
       method: 'POST'
     })
     .then(res => {
-      console.log(res)
       if (res.title !== state.title) {
         console.log('error');
       };
