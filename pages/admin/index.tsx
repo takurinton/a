@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/client'
 
 export default function Home() {
@@ -24,4 +25,10 @@ export default function Home() {
       )}
      </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () =>  {
+  return {
+    props: {}
+  }
 }

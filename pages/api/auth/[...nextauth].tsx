@@ -1,6 +1,14 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { User } from '../../admin/login';
+
+type Token = { 
+  token: string;
+};
+
+type User = {
+    username: string;
+    password: string;
+};
 
 type Credentials = {
   username: {

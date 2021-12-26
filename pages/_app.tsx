@@ -7,7 +7,6 @@ const App = ({
   pageProps, 
   router 
 }: AppProps): JSX.Element => {
-  console.log(router.pathname);
   return (
     <ChakraProvider>
       <Provider session={pageProps.session}>

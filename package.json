@@ -10,13 +10,16 @@
     "next/build": "next build"
   },
   "dependencies": {
+    "@babel/core": "^7.16.0",
     "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.1",
     "@chakra-ui/select": "^1.2.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@types/babel__core": "^7.1.17",
     "@types/next": "^9.0.0",
     "@types/next-auth": "^3.15.0",
+    "@types/nodemailer": "^6.4.4",
     "@types/react-datepicker": "^4.3.2",
     "@types/react-syntax-highlighter": "^13.5.2",
     "framer-motion": "^4",
