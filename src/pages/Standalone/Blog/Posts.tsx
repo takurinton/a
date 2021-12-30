@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { PostsRenderer } from '../../Blog/Posts';
+import { Posts as Component } from '../../Blog/Posts';
 import json from './blog.json';
 
 const initialState = [
@@ -16,17 +16,14 @@ const initialState = [
 
 export const Posts = () => {
   const [posts, setPosts] = useState(initialState);
-  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
       setPosts(json as any);
-      setIsLoading(false);
     })();
   }, []);
 
   return (
-    <PostsRenderer 
-      isLoading={isLoading}
+    <Component 
       posts={posts}
       isStandalone={true}
     />

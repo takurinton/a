@@ -44,7 +44,7 @@ export const New = () => {
 
   const onSubmit = () => {
     console.log('submited!!');
-    handleSubmit();
+    handleSubmit('');
   };
 
   useEffect(() => {

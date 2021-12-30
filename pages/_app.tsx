@@ -12,7 +12,7 @@ const App = ({
   const [token, setToken] = useState('');
 
   getSession()
-  // @ts-ignore
+  // @ts-expect-error
     .then(s => setToken(s.token));
   
   return (
