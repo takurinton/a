@@ -10,13 +10,18 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 
-const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boolean; }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    window.location.reload();
-  }
+const Header = ({ 
+  isAdmin, 
+  isStandalone,
+  signIn,
+  signOut,
+}: { 
+  isAdmin: boolean; 
+  isStandalone: boolean;
+  signIn: any;
+  signOut: any;
+}) => {
+  const { isOpen } = useDisclosure();
 
   return (
     <Flex
@@ -54,13 +59,12 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
             </>
           ) : isAdmin ? (
             <>
-              <Text><Link href='/blog'><a>BLOG</a></Link></Text>
+              <Text><Link href='/posts'><a>BLOG</a></Link></Text>
               <Text><Link href='/portfolio'><a>PORTFOLIO</a></Link></Text>
             </>
           ): <></>
         }
       </Stack>
-
       {
         isAdmin ? (
           <Box
@@ -70,8 +74,9 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
             <Button
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+              onClick={signOut}
             >
-              <Link href='/'><a>Logout</a></Link>
+              Logout
             </Button>
           </Box>
         ) : (
@@ -82,8 +87,9 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
             <Button
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+              onClick={signIn}
             >
-              <Link href='/login'><a>Login</a></Link>
+              Login
             </Button>
             <Button
               variant='outline'
