@@ -1,8 +1,9 @@
 import type { AppProps } from 'next/app';
-import { Provider, useSession, signIn, signOut, getSession } from 'next-auth/client';
+import { Provider, signIn, signOut, getSession } from 'next-auth/client';
 import { ChakraProvider } from "@chakra-ui/react";
 import Header from '../src/components/Header';
 import { useState } from 'react';
+import NextNprogress from 'nextjs-progressbar'
 
 const App = ({
   Component, 
@@ -18,6 +19,7 @@ const App = ({
   return (
     <ChakraProvider>
       <Provider session={pageProps.session}>
+        <NextNprogress color={'#ffffff'}/>
         <Header isAdmin={token ? true: false} isStandalone={token ? false: true} signIn={signIn} signOut={signOut} />
         <Component {...pageProps} />
       </Provider>
