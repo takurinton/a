@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Router from 'next/router'
 import { fetcher } from "../../../utils/fetcher";
 
 export const useForm = () => {
@@ -19,7 +20,7 @@ export const useForm = () => {
     }
   };
   
-  const handleSubmit = () => {
+  const handleSubmit = (token: string) => {
     (async () => await fetcher({
       url: 'https://api.takurinton.com/admin/blog',
       _body: JSON.stringify({
@@ -27,13 +28,15 @@ export const useForm = () => {
         is_open: state.is_open === 'true' ? true: false,
         pub_date: state.pub_date.toISOString(),
       }),
-      method: 'POST'
+      method: 'POST',
+      token,
     })
     .then(res => {
       if (res.title !== state.title) {
         console.log('error');
       };
-      window.history.pushState('', '', '/blog');
+
+      Router.push('/posts');
     }))();
   }
 

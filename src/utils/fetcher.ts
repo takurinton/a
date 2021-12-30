@@ -5,13 +5,14 @@ export const fetcher = async (
   { 
     url, 
     _body, 
-    method
+    method,
+    token,
 }: { 
     url: string; 
     _body?: any, 
-    method: string 
+    method: string;
+    token?: any;
 }) => {
-  const token = getToken();
   if (!token) return {};
 
   const body = _body ?? JSON.stringify(_body);
