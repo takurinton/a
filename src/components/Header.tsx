@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import {
   Box,
   Stack,
@@ -31,10 +31,10 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
           { isAdmin ? (
-            <Link to='/'>admin.takurinton.dev</Link>
+            <Link href='/'><a>admin.takurinton.dev</a></Link>
            ) : isStandalone ? (
-            <Link to='/standalone'>admin.takurinton.dev</Link>
-           ): <>admin.takurinton.com</> }
+            <Link href='/standalone'>admin.takurinton.dev</Link>
+           ): <a>admin.takurinton.com</a> }
         </Heading>
       </Flex>
 
@@ -49,13 +49,13 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
         {
         isStandalone ? (
             <>
-              <Text><Link to='/standalone/blog'>BLOG</Link></Text>
-              <Text><Link to='/standalone/portfolio'>PORTFOLIO</Link></Text>
+              <Text><Link href='/standalone/blog'><a>BLOG</a></Link></Text>
+              <Text><Link href='/standalone/portfolio'><a>PORTFOLIOM</a></Link></Text>
             </>
           ) : isAdmin ? (
             <>
-              <Text><Link to='/blog'>BLOG</Link></Text>
-              <Text><Link to='/portfolio'>PORTFOLIO</Link></Text>
+              <Text><Link href='/blog'><a>BLOG</a></Link></Text>
+              <Text><Link href='/portfolio'><a>PORTFOLIO</a></Link></Text>
             </>
           ): <></>
         }
@@ -71,7 +71,7 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
             >
-              <Link to='/' onClick={logout}>Logout</Link>
+              <Link href='/'><a>Logout</a></Link>
             </Button>
           </Box>
         ) : (
@@ -83,7 +83,7 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
               variant='outline'
               _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
             >
-              <Link to='/login'>Login</Link>
+              <Link href='/login'><a>Login</a></Link>
             </Button>
             <Button
               variant='outline'
@@ -93,7 +93,7 @@ const Header = ({ isAdmin, isStandalone }: { isAdmin: boolean; isStandalone: boo
                 // window.location.reload();
               }}
             >
-              <Link to='/standalone/blog'>standaloneで試す</Link>
+              <Link href='/standalone/blog'><a>standaloneで試す</a></Link>
             </Button>
           </Box>
         )

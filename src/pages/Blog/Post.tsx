@@ -18,8 +18,8 @@ export const Post = () => {
   const { id } = useParams<string>();
   const [state, setState] = useState(initialState);
   const [categories, setCategories] = useState({ category: [{ id: 0, name: '' }]});
-  const purl = `${import.meta.env.VITE_API_URL}/admin/blog/post/${id}`;
-  const curl = `${import.meta.env.VITE_API_URL}/admin/blog/category`;
+  const purl = `https://api.takurinton.com/admin/blog/post/${id}`;
+  const curl = `https://api.takurinton.com/admin/blog/category`;
   useEffect(() => {
     (async () => {
       const p = await fetcher({
