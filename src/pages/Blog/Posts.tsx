@@ -15,7 +15,7 @@ export const Posts = ({ posts, isStandalone = false }: { posts: any; isStandalon
   return (
     <Box w='80vw' m='30px auto'>
       <Box textAlign='right' p='0 0 20px'>
-        <Link href={isStandalone ? '/standalone/blog/new' : '/blog/new'}>
+        <Link href={isStandalone ? '/standalone/blog/new' : '/posts/create'}>
           <a><Badge colorScheme="green" variant="solid" fontSize="1.2em">新しい投稿を作成</Badge></a>
         </Link>
       </Box>

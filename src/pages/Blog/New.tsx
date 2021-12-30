@@ -3,43 +3,27 @@ import { Flex, Box } from '@chakra-ui/layout';
 import { useForm } from './hooks/useForm';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
-import { fetcher } from '../../utils/fetcher';
 
-const initialState = {
-  category: '',
-  contents: '',
-  is_open: null,
-  pub_date: new Date(),
-  title: '',
-}
-
-export const New = () => {
+export const New = ({
+  token,
+  categories,
+}: {
+  token: string;
+  categories: { category: { id: number; name: string; }[] }
+}) => {
   const {
     state, 
     handleChange,
     handleSubmit,
   } = useForm();
 
-  const [categories, setCategories] = useState({ category: [{ id: 0, name: '' }]});
-
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(event);
   };
 
   const onSubmit = () => {
-    handleSubmit();
+    handleSubmit(token);
   };
-
-  useEffect(() => {
-    const curl = `${import.meta.env.VITE_API_URL}/admin/blog/category`;
-    (async () => {
-      const c = await fetcher({
-        url: curl,
-        method: 'GET',
-      })
-      setCategories(c);
-    })();
-  }, []);
 
   return (
     <Flex p='30px'>

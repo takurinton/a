@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/client";
 import React from "react";
 import { Posts as Component } from "../../src/pages/Blog";
