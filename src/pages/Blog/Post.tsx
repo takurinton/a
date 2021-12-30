@@ -1,39 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
 import { fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
+import Router from 'next/router';
 
-const initialState = {
-  category: '',
-  contents: '',
-  id: 0,
-  is_open: null,
-  pub_date: new Date(),
-  title: '',
-}
-
-export const Post = () => {
-  const { id } = useParams<string>();
-  const [state, setState] = useState(initialState);
-  const [categories, setCategories] = useState({ category: [{ id: 0, name: '' }]});
-  const purl = `https://api.takurinton.com/admin/blog/post/${id}`;
-  const curl = `https://api.takurinton.com/admin/blog/category`;
-  useEffect(() => {
-    (async () => {
-      const p = await fetcher({
-        url: purl,
-        method: 'GET',
-      });
-      const c = await fetcher({
-        url: curl,
-        method: 'GET',
-      })
-      setState(p);
-      setCategories(c);
-    })();
-  }, []);
+export const Post = ({
+  post,
+  categories
+}: {
+  post: any,
+  categories: { category: { id: number; name: string }[] }
+}) => {
+  const [state, setState] = useState(post);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target) {
@@ -46,7 +25,7 @@ export const Post = () => {
 
   const onSubmit = () => {
     (async () => await fetcher({
-      url: `https://api.takurinton.com/admin/blog/post/${id}`,
+      url: `https://api.takurinton.com/admin/blog/post/${post.id}`,
       _body: JSON.stringify({
         ...state,
         is_open: state.is_open === 'true' ? true: false,
@@ -57,8 +36,9 @@ export const Post = () => {
     .then(res => {
       if (res.title !== state.title) {
         console.log('error');
+      } else {
+        Router.push('/posts');
       };
-      window.history.pushState('', '', '/blog');
     }))();
   };
 
