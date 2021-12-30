@@ -7,10 +7,12 @@ import Router from 'next/router';
 
 export const Post = ({
   post,
-  categories
+  categories,
+  token,
 }: {
   post: any,
-  categories: { category: { id: number; name: string }[] }
+  categories: { category: { id: number; name: string }[] };
+  token: string;
 }) => {
   const [state, setState] = useState(post);
 
@@ -31,7 +33,8 @@ export const Post = ({
         is_open: state.is_open === 'true' ? true: false,
         pub_date: state.pub_date.toISOString(),
       }),
-      method: 'PATCH'
+      method: 'PATCH',
+      token,
     })
     .then(res => {
       if (res.title !== state.title) {

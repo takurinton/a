@@ -7,12 +7,14 @@ import { fetcher } from "../../../src/utils/fetcher";
 // TODO: 真面目にやる
 const Post = ({
   post,
-  categories
+  categories,
+  token,
 }: { 
   post: any,
-  categories: { category: { id: number; name: string; }[] }
+  categories: { category: { id: number; name: string; }[] };
+  token: string;
 }): JSX.Element => (
-  <Component  post={post} categories={categories} />
+  <Component  post={post} categories={categories} token={token} />
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) =>  {
@@ -41,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) =>  {
     props: {
       post,
       categories,
+      token,
     }
   }
 }
