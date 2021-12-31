@@ -11,18 +11,44 @@ type Fetcher = {
   };
 }
 
-export const fetcher = async (
-  { 
-    url, 
-    _body, 
+export const _fetcher = async (
+  {
+    url,
+    _body,
     method,
     token,
-}: { 
-    url: string; 
-    _body?: any, 
+  }: {
+    url: string;
+    _body?: any,
     method: string;
     token?: any;
-}): Promise<Fetcher> => {
+  }) => {
+  const body = _body ?? JSON.stringify(_body);
+  return await fetch(url, {
+    method,
+    body,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  }).then(res => {
+    if (res.status === 401) return { status: 401 }
+    else return res.json()
+  });
+}
+
+export const fetcher = async (
+  {
+    url,
+    _body,
+    method,
+    token,
+  }: {
+    url: string;
+    _body?: any,
+    method: string;
+    token?: any;
+  }): Promise<Fetcher> => {
   if (!token) return {
     redirect: {
       permanent: false,
@@ -30,31 +56,27 @@ export const fetcher = async (
     }
   };
 
-  const body = _body ?? JSON.stringify(_body);
-  return await fetch(url, {
+  const res = await _fetcher({
+    url,
+    _body,
     method,
-    body,
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`, 
-    },
-  }).then(res => {
-    console.log(res.body)
-    if (res.status === 401) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: '/401'
-        }
-      }
-    } else {
-      return {
-        props: {
-          token,
-          status: res.status,
-          res: res.json(),
-        }
+    token,
+  });
+
+  if (res.status === 401) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/401'
       }
     }
-  }); 
+  } else {
+    return {
+      props: {
+        token,
+        status: 200,
+        res
+      }
+    }
+  }
 }
