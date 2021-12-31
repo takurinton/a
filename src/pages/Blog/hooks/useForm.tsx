@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Router from 'next/router'
-import { fetcher } from "../../../utils/fetcher";
+import { _fetcher } from "../../../utils/fetcher";
 
 export const useForm = () => {
   const [state, setState] = useState({
@@ -21,7 +21,7 @@ export const useForm = () => {
   };
   
   const handleSubmit = (token: string) => {
-    (async () => await fetcher({
+    (async () => await _fetcher({
       url: 'https://api.takurinton.com/admin/blog',
       _body: JSON.stringify({
         ...state,
