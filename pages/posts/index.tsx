@@ -19,9 +19,7 @@ const Posts = ({
   res: {
     posts: Posts
   }
-}): JSX.Element => (
-  <Component posts={res} />
-);
+}): JSX.Element => <Component posts={res} />;
 
 export const getServerSideProps: GetServerSideProps = async (context) =>  {
   const session = await getSession(context);

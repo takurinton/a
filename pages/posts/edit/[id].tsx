@@ -13,9 +13,7 @@ const Post = ({
   post: any,
   categories: { category: { id: number; name: string; }[] };
   token: string;
-}): JSX.Element => (
-  <Component  post={post} categories={categories} token={token} />
-);
+}): JSX.Element => <Component  post={post} categories={categories} token={token} />;
 
 export const getServerSideProps: GetServerSideProps = async (context) =>  {
   const session = await getSession(context);

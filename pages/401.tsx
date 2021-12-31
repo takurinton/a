@@ -7,8 +7,6 @@ export default function Unauthrized() {
   useEffect(() => {
     signIn();
   }, []);
-  
-  return (
-    <></>
-  );
+
+  return <></>;
 }

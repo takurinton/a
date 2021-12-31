@@ -8,7 +8,6 @@ import NextNprogress from 'nextjs-progressbar'
 const App = ({
   Component, 
   pageProps, 
-  router 
 }: AppProps): JSX.Element => {
   const [token, setToken] = useState<string | null>('');
 
