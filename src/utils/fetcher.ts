@@ -1,5 +1,15 @@
-import { getToken } from "./getToken";
-import { noAuth } from "./noAuth";
+type Fetcher = {
+  props: {
+    token: string;
+    status: number;
+    res: any;
+  };
+} | {
+  redirect: {
+    permanent: boolean;
+    destination: string;
+  };
+}
 
 export const fetcher = async (
   { 
@@ -12,8 +22,13 @@ export const fetcher = async (
     _body?: any, 
     method: string;
     token?: any;
-}) => {
-  if (!token) return {};
+}): Promise<Fetcher> => {
+  if (!token) return {
+    redirect: {
+      permanent: false,
+      destination: '/401'
+    }
+  };
 
   const body = _body ?? JSON.stringify(_body);
   return await fetch(url, {
@@ -24,9 +39,22 @@ export const fetcher = async (
       'Authorization': `Bearer ${token}`, 
     },
   }).then(res => {
+    console.log(res.body)
     if (res.status === 401) {
-        noAuth();
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/401'
+        }
+      }
+    } else {
+      return {
+        props: {
+          token,
+          status: res.status,
+          res: res.json(),
+        }
+      }
     }
-    return res.json()
   }); 
 }
