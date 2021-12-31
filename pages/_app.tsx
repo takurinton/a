@@ -8,13 +8,12 @@ import NextNprogress from 'nextjs-progressbar'
 const App = ({
   Component, 
   pageProps, 
-  router 
 }: AppProps): JSX.Element => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState<string | null>('');
 
   getSession()
   // @ts-expect-error
-    .then(s => setToken(s.token));
+    .then(s => s ? setToken(s.token) : setToken(null));
   
   return (
     <ChakraProvider>

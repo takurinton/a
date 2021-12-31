@@ -38,9 +38,9 @@ const getToken = async (user: User) => {
 const findUserByCredentials = async (credentials: any) => {
   const username = credentials.username;
   const password = credentials.password;
-  const body: User = { username: username, password: password };
-  const token = await getToken(body).then(res => res.json());
-  return { name: username, token: token.token };
+  const body: User = { username, password };
+  const res = await getToken(body).then(res => res.json());
+  return { name: username, token: res.token };
 }
 
 export default NextAuth({

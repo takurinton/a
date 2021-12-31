@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
-import { fetcher } from '../../utils/fetcher';
+import { _fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
 import Router from 'next/router';
@@ -26,7 +26,7 @@ export const Post = ({
   };
 
   const onSubmit = () => {
-    (async () => await fetcher({
+    (async () => await _fetcher({
       url: `https://api.takurinton.com/admin/blog/post/${post.id}`,
       _body: JSON.stringify({
         ...state,

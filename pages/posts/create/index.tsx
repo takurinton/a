@@ -7,13 +7,11 @@ import { fetcher } from "../../../src/utils/fetcher";
 // TODO: 真面目にやる
 const CreatePosts = ({ 
   token,
-  categories
+  res
 }: { 
   token: string;
-  categories: { category: { id: number; name: string; }[] }
-}): JSX.Element => {
-  return <New token={token} categories={categories} />
-};
+  res: { category: { id: number; name: string; }[] }
+}): JSX.Element => <New token={token} categories={res} />;
 
 export const getServerSideProps: GetServerSideProps = async (context) =>  {
   const session = await getSession(context);
@@ -26,18 +24,11 @@ export const getServerSideProps: GetServerSideProps = async (context) =>  {
   const token = session?.token;
 
   const url = `https://api.takurinton.com/admin/blog/category`;
-  const categories = await fetcher({
+  return await fetcher({
     url,
     method: 'GET',
     token,
   });
-
-  return {
-    props: {
-      token,
-      categories
-    }
-  }
 }
 
 export default CreatePosts;
