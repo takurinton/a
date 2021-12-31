@@ -1,42 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Flex, Box } from '@chakra-ui/layout';
 import { useForm } from '../../Blog/hooks/useForm';
 import { Form } from '../../Blog/utils/Form';
 import { Md } from '../../Blog/utils/Md';
 
-const initialState = {
-  category: '',
-  contents: '',
-  is_open: null,
-  pub_date: new Date(),
-  title: '',
-}
-
-const _categories = {
-  category: [
-    {
-      id: 1,
-      name: 'react',
-    },
-    {
-      id: 2,
-      name: 'frontend',
-    },
-    {
-      id: 3,
-      name: 'poem',
-    },
-  ]
-};
-
-export const New = () => {
+export const New = ({
+  categories,
+}: {
+  categories: any;
+}) => {
   const {
     state, 
     handleChange,
-    handleSubmit,
+    // handleSubmit,
   } = useForm();
-
-  const [categories, setCategories] = useState({ category: [{ id: 0, name: '' }]});
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(event);
@@ -44,12 +21,7 @@ export const New = () => {
 
   const onSubmit = () => {
     console.log('submited!!');
-    handleSubmit('');
   };
-
-  useEffect(() => {
-    setCategories(_categories);
-  }, []);
 
   return (
     <Flex p='30px'>
