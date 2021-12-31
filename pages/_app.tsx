@@ -10,11 +10,11 @@ const App = ({
   pageProps, 
   router 
 }: AppProps): JSX.Element => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState<string | null>('');
 
   getSession()
   // @ts-expect-error
-    .then(s => setToken(s.token));
+    .then(s => s ? setToken(s.token) : setToken(null));
   
   return (
     <ChakraProvider>
