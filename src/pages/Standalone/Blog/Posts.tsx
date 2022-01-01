@@ -10,12 +10,13 @@ import {
   Badge,
 } from "@chakra-ui/react"
 import Link from 'next/link';
+import { Posts as Props } from '../../../utils/types';
 
-export const Posts = ({
-  posts,
-}: {
-  posts: any
-}) => {
+type PostsProps = {
+  posts: Props;
+}
+
+export const Posts = ({ posts }: PostsProps) => {
   return (
     <Box w='80vw' m='30px auto'>
       <Box textAlign='right' p='0 0 20px'>
@@ -34,7 +35,7 @@ export const Posts = ({
           </Tr>
         </Thead>
         {
-          posts.map((p: any, index: number) => (
+          posts.map((p, index: number) => (
             <Tbody key={index.toString()}>
               <Tr>
                 <Td>{p.id}</Td>
