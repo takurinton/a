@@ -8,19 +8,25 @@ import {
 import { Select } from "@chakra-ui/select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { rintonmd } from '../../../rintonmd';
+import { Categories, Post } from '../../../utils/types';
+
+type Props = {
+  state: any;
+  categories: Categories;
+  onChange: (event: 
+    React.ChangeEvent<HTMLInputElement> | 
+    React.ChangeEvent<HTMLTextAreaElement> |
+    React.ChangeEvent<HTMLSelectElement> |
+    any) => void;
+  onSubmit: () => void;
+}
 
 export const Form = ({
   state,
   categories,
   onChange,
   onSubmit,
-}: {
-  state: any;
-  categories: { category: { id: number, name: string }[]};
-  onChange: (event: any) => void;
-  onSubmit: () => void;
-}) => {
+}: Props) => {
   const getHight = (value: string) => {
     return value.split('\n').length;
   };
@@ -46,6 +52,7 @@ export const Form = ({
 
       <Select
         name='is_open'
+        // @ts-ignore
         value={state.is_open}
         onChange={onChange}
       >

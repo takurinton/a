@@ -4,16 +4,19 @@ import { _fetcher } from '../../utils/fetcher';
 import { Form } from './utils/Form';
 import { Md } from './utils/Md';
 import Router from 'next/router';
+import { Categories, Post as PostProps } from '../../utils/types';
+
+type Props = {
+  post: PostProps,
+  categories: Categories;
+  token: string;
+}
 
 export const Post = ({
   post,
   categories,
   token,
-}: {
-  post: any,
-  categories: { category: { id: number; name: string }[] };
-  token: string;
-}) => {
+}: Props) => {
   const [state, setState] = useState(post);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

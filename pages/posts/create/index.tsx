@@ -2,15 +2,14 @@ import { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/client";
 import { New } from "../../../src/pages/Blog/New";
 import { fetcher } from "../../../src/utils/fetcher";
+import { Categories } from "../../../src/utils/types";
 
-
-// TODO: 真面目にやる
 const CreatePosts = ({ 
   token,
   res
 }: { 
   token: string;
-  res: { category: { id: number; name: string; }[] }
+  res: Categories
 }): JSX.Element => <New token={token} categories={res} />;
 
 export const getServerSideProps: GetServerSideProps = async (context) =>  {

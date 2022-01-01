@@ -3,23 +3,13 @@ import { getSession } from "next-auth/client";
 import React from "react";
 import { Posts as Component } from "../../src/pages/Blog";
 import { fetcher } from "../../src/utils/fetcher";
+import { Posts } from "../../src/utils/types";
 
-export type Posts = {
-  id: string;
-  title: string;
-  contents: string; // これはなくす予定
-  pub_date: string;
-  open: string;
-}[];
+type Props = {
+  res: Posts
+}
 
-// TODO: 真面目にやる
-const Posts = ({
-  res
-}: {
-  res: {
-    posts: Posts
-  }
-}): JSX.Element => <Component posts={res} />;
+const Posts = ({ res }: Props): JSX.Element => <Component posts={res} />;
 
 export const getServerSideProps: GetServerSideProps = async (context) =>  {
   const session = await getSession(context);
