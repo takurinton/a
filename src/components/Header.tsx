@@ -10,13 +10,13 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 
-const Header = ({ 
-  isAdmin, 
+const Header = ({
+  isAdmin,
   isStandalone,
   signIn,
   signOut,
-}: { 
-  isAdmin: boolean; 
+}: {
+  isAdmin: boolean;
   isStandalone: boolean;
   signIn: any;
   signOut: any;
@@ -35,11 +35,11 @@ const Header = ({
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing={'tighter'}>
-          { isAdmin ? (
+          {isAdmin ? (
             <Link href='/'><a>admin.takurinton.dev</a></Link>
-           ) : isStandalone ? (
+          ) : isStandalone ? (
             <Link href='/standalone'>admin.takurinton.dev</Link>
-           ): <a>admin.takurinton.com</a> }
+          ) : <a>admin.takurinton.com</a>}
         </Heading>
       </Flex>
 
@@ -52,7 +52,7 @@ const Header = ({
         mt={{ base: 4, md: 0 }}
       >
         {
-        isStandalone ? (
+          isStandalone ? (
             <>
               <Text><Link href='/standalone/blog'><a>BLOG</a></Link></Text>
               <Text><Link href='/standalone/portfolio'><a>PORTFOLIOM</a></Link></Text>
@@ -61,8 +61,9 @@ const Header = ({
             <>
               <Text><Link href='/posts'><a>BLOG</a></Link></Text>
               <Text><Link href='/portfolio'><a>PORTFOLIO</a></Link></Text>
+              <Text><Link href='/analytics'><a>ANALYTICS</a></Link></Text>
             </>
-          ): <></>
+          ) : <></>
         }
       </Stack>
       {
