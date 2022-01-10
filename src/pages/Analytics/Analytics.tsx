@@ -41,6 +41,8 @@ export const Analytics = () => {
     query: query,
   });
 
+  console.log(result)
+
   // 最初だけローディング表示する、2回目以降は form がリセットされてしまうのでやらない
   if (query === initialQuery) {
     return result.fetching ? <H1 text={'loading...'}></H1> :

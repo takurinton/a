@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 import { DocumentNode } from "graphql";
 import {
   Box,
@@ -21,31 +21,31 @@ export const Result = ({ result, ast }: { result: any, ast?: DocumentNode }) => 
       </Box>
       <Table variant="simple">
         <TableCaption>takurinton analytics</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>domain</Th>
-              <Th>path</Th>
-              <Th>created_at</Th>
-              <Th>detail</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {
-              result.data.analytics.analytics.map((a: { id: number, domain: string, path: string, created_at: string}) => (
-                <Tr key={a.id}>
-                  <Td>{a.domain}</Td>
-                  <Td>{a.path}</Td>
-                  <Td>{a.created_at}</Td>
-                  <Td><Link to={`/detail/?domain=${a.domain}&path=${a.path}`}>detail</Link></Td>
-                </Tr>
-              ))
-            }
-            <Tr>
-              <Td>...</Td>
-              <Td>...</Td>
-              <Td>...</Td>
-            </Tr>
-          </Tbody>
+        <Thead>
+          <Tr>
+            <Th>domain</Th>
+            <Th>path</Th>
+            <Th>created_at</Th>
+            <Th>detail</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {
+            result.data.analytics.analytics.map((a: { id: number, domain: string, path: string, created_at: string }) => (
+              <Tr key={a.id}>
+                <Td>{a.domain}</Td>
+                <Td>{a.path}</Td>
+                <Td>{a.created_at}</Td>
+                <Td><Link href={`/detail/?domain=${a.domain}&path=${a.path}`}><a>detail</a></Link></Td>
+              </Tr>
+            ))
+          }
+          <Tr>
+            <Td>...</Td>
+            <Td>...</Td>
+            <Td>...</Td>
+          </Tr>
+        </Tbody>
       </Table>
     </Box>
   );
