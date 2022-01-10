@@ -2,12 +2,9 @@
   "name": "adminsite",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview",
     "rintonmd/debug": "npx ts-node ./src/rintonmd/index.ts",
-    "next/dev": "next dev",
-    "next/build": "next build"
+    "dev": "next dev",
+    "build": "next build"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
