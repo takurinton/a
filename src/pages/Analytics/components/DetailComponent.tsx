@@ -31,8 +31,6 @@ export const DetailComponent = ({
     state
   } = useForm();
 
-  console.log(result)
-
   const api = useTransformerContext();
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {

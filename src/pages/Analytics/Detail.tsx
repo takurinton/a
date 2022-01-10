@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "urql";
 import { Box, Spinner } from '@chakra-ui/react';
 import { DocumentNode, parse, print } from "graphql";
-import { PORTFOLIO, BLOG, PORTFOLIO_NUMBER, BLOG_NUMBER, ALL_NUMBER } from './utils/constants';
+import { PORTFOLIO, BLOG, PORTFOLIO_NUMBER, BLOG_NUMBER, ALL_NUMBER, BLOG_DEV, PORTFOLIO_DEV, PORTFOLIO_DEV_NUMBER, BLOG_DEV_NUMBER } from './utils/constants';
 import { getParams } from './utils/getParams';
 import { TransformerContextProvider } from './context/context';
 import { DetailComponent } from './components/DetailComponent';
@@ -26,7 +26,9 @@ export const Detail = () => {
     const domainString = getParams('domain');
     const domain = domainString === PORTFOLIO ?
         PORTFOLIO_NUMBER : domainString === BLOG ?
-            BLOG_NUMBER : ALL_NUMBER;
+            BLOG_NUMBER : domainString === PORTFOLIO_DEV ?
+                PORTFOLIO_DEV_NUMBER : domainString === BLOG_DEV ?
+                    BLOG_DEV_NUMBER : ALL_NUMBER;
     const path = getParams('path') ?? '';
     const [query, setQuery] = useState<string>(initialQuery(domain, path));
     const [ast, setAst] = useState<DocumentNode>(parse(initialQuery(domain, path)));
