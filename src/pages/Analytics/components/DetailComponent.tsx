@@ -15,7 +15,7 @@ type Data = {
 const getDate = (date_count: Data) => date_count.map(d => d.date);
 const getCount = (date_count: Data) => date_count.map(d => d.count);
 
-export const Detail = ({
+export const DetailComponent = ({
   ast,
   result,
   domainString,
@@ -23,13 +23,15 @@ export const Detail = ({
 }: {
   ast?: DocumentNode,
   result: any,
-  domainString: string | null,
+  domainString: string | null | undefined,
   path: string
 }) => {
   const {
     handleChange,
     state
   } = useForm();
+
+  console.log(result)
 
   const api = useTransformerContext();
 

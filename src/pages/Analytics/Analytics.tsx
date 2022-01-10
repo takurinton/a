@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Spinner } from '@chakra-ui/react';
 import { useQuery } from 'urql';
 import { DocumentNode, parse, print } from "graphql";
-import { H1 } from './components/text';
 import { Result } from "./components/Result";
 import { Form } from './components/Form';
 import { Paginator } from './components/Paginator';
@@ -41,11 +40,18 @@ export const Analytics = () => {
     query: query,
   });
 
-  console.log(result)
-
-  // 最初だけローディング表示する、2回目以降は form がリセットされてしまうのでやらない
   if (query === initialQuery) {
-    return result.fetching ? <H1 text={'loading...'}></H1> :
+    return result.fetching ?
+      <Box textAlign='center' m='50px 0 0'>
+        <Spinner
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        />
+      </Box>
+      :
       <TransformerContextProvider
         root={ast}
         onChangeNode={ast => {

@@ -36,7 +36,7 @@ export const Result = ({ result, ast }: { result: any, ast?: DocumentNode }) => 
                 <Td>{a.domain}</Td>
                 <Td>{a.path}</Td>
                 <Td>{a.created_at}</Td>
-                <Td><Link href={`/detail/?domain=${a.domain}&path=${a.path}`}><a>detail</a></Link></Td>
+                <Td><Link href={`/analytics/detail/?domain=${a.domain}&path=${a.path}`}><a>detail</a></Link></Td>
               </Tr>
             ))
           }
